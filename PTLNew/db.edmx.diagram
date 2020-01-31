@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4619c7d807b048e7817e41671676b08c" Name="Diagram1">
+        <EntityTypeShape EntityType="PTLModel.City" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.Country" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.Person" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.Region" Width="1.5" PointX="1.5" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.Ride" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.RideStop" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.Route" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.RouteStop" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.Stop" Width="1.5" PointX="3.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.Ticket" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.User" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTLModel.Vehicle" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="PTLModel.FK_City_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_Stop_City" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_Person_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_Region_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_Person_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_Ticket_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_Ride_Route" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_Ride_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_RideStop_Ride" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_Ticket_Ride" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_RideStop_RouteStop" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_RouteStop_Route" ManuallyRouted="false" />
+        <AssociationConnector Association="PTLModel.FK_RouteStop_Stop" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

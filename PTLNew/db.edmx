@@ -1,0 +1,923 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PTLModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="City_Id" />
+          </Key>
+          <Property Name="City_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Country_Id" />
+          </Key>
+          <Property Name="Country_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Person_Id" />
+          </Key>
+          <Property Name="Person_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsPrimary" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Region_Id" />
+          </Key>
+          <Property Name="Region_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ride">
+          <Key>
+            <PropertyRef Name="Ride_Id" />
+          </Key>
+          <Property Name="Ride_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Route_Id" Type="int" Nullable="false" />
+          <Property Name="Vehicle_Id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RideStop">
+          <Key>
+            <PropertyRef Name="RideStop_Id" />
+          </Key>
+          <Property Name="RideStop_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ride_Id" Type="int" Nullable="false" />
+          <Property Name="RouteStop_Id" Type="int" Nullable="false" />
+          <Property Name="DateTime_Departure" Type="datetime" />
+          <Property Name="DateTime_Arrival" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="Route_Id" />
+          </Key>
+          <Property Name="Route_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RouteStop">
+          <Key>
+            <PropertyRef Name="RouteStop_Id" />
+          </Key>
+          <Property Name="RouteStop_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Route_Id" Type="int" Nullable="false" />
+          <Property Name="Stop_Id" Type="int" Nullable="false" />
+          <Property Name="Position" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stop">
+          <Key>
+            <PropertyRef Name="Stop_Id" />
+          </Key>
+          <Property Name="Stop_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Ticket_Id" />
+          </Key>
+          <Property Name="Ticket_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Person_Id" Type="int" Nullable="false" />
+          <Property Name="Ride_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="IsAdmin" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Vehicle_Id" />
+          </Key>
+          <Property Name="Vehicle_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="PlateNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_City_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Region_Id" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ride_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Route_Id" />
+            </Principal>
+            <Dependent Role="Ride">
+              <PropertyRef Name="Route_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ride_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Vehicle_Id" />
+            </Principal>
+            <Dependent Role="Ride">
+              <PropertyRef Name="Vehicle_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RideStop_Ride">
+          <End Role="Ride" Type="Self.Ride" Multiplicity="1" />
+          <End Role="RideStop" Type="Self.RideStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="Ride_Id" />
+            </Principal>
+            <Dependent Role="RideStop">
+              <PropertyRef Name="Ride_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RideStop_RouteStop">
+          <End Role="RouteStop" Type="Self.RouteStop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RideStop" Type="Self.RideStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RouteStop">
+              <PropertyRef Name="RouteStop_Id" />
+            </Principal>
+            <Dependent Role="RideStop">
+              <PropertyRef Name="RouteStop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RouteStop_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RouteStop" Type="Self.RouteStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Route_Id" />
+            </Principal>
+            <Dependent Role="RouteStop">
+              <PropertyRef Name="Route_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RouteStop_Stop">
+          <End Role="Stop" Type="Self.Stop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RouteStop" Type="Self.RouteStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stop">
+              <PropertyRef Name="Stop_Id" />
+            </Principal>
+            <Dependent Role="RouteStop">
+              <PropertyRef Name="Stop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stop_City">
+          <End Role="City" Type="Self.City" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stop" Type="Self.Stop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_Id" />
+            </Principal>
+            <Dependent Role="Stop">
+              <PropertyRef Name="City_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Ride">
+          <End Role="Ride" Type="Self.Ride" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="Ride_Id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Ride_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PTLModelContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ride" EntityType="Self.Ride" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RideStop" EntityType="Self.RideStop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RouteStop" EntityType="Self.RouteStop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stop" EntityType="Self.Stop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_City_Region" Association="Self.FK_City_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Country" Association="Self.FK_Person_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_User" Association="Self.FK_Person_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Country" Association="Self.FK_Region_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ride_Route" Association="Self.FK_Ride_Route">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="Ride" EntitySet="Ride" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ride_Vehicle" Association="Self.FK_Ride_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Ride" EntitySet="Ride" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RideStop_Ride" Association="Self.FK_RideStop_Ride">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="RideStop" EntitySet="RideStop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RideStop_RouteStop" Association="Self.FK_RideStop_RouteStop">
+            <End Role="RouteStop" EntitySet="RouteStop" />
+            <End Role="RideStop" EntitySet="RideStop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RouteStop_Route" Association="Self.FK_RouteStop_Route">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="RouteStop" EntitySet="RouteStop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RouteStop_Stop" Association="Self.FK_RouteStop_Stop">
+            <End Role="Stop" EntitySet="Stop" />
+            <End Role="RouteStop" EntitySet="RouteStop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stop_City" Association="Self.FK_Stop_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Stop" EntitySet="Stop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Person" Association="Self.FK_Ticket_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Ride" Association="Self.FK_Ticket_Ride">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PTLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="City_Id" />
+          </Key>
+          <Property Name="City_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_City_Region" FromRole="City" ToRole="Region" />
+          <NavigationProperty Name="Stop" Relationship="Self.FK_Stop_City" FromRole="City" ToRole="Stop" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Country_Id" />
+          </Key>
+          <Property Name="Country_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Person_Country" FromRole="Country" ToRole="Person" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_Region_Country" FromRole="Country" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Person_Id" />
+          </Key>
+          <Property Name="Person_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsPrimary" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Person_Country" FromRole="Person" ToRole="Country" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Person_User" FromRole="Person" ToRole="User" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_Person" FromRole="Person" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Region_Id" />
+          </Key>
+          <Property Name="Region_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_City_Region" FromRole="Region" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Region_Country" FromRole="Region" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Ride">
+          <Key>
+            <PropertyRef Name="Ride_Id" />
+          </Key>
+          <Property Name="Ride_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Route_Id" Type="Int32" Nullable="false" />
+          <Property Name="Vehicle_Id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Route" Relationship="Self.FK_Ride_Route" FromRole="Ride" ToRole="Route" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK_Ride_Vehicle" FromRole="Ride" ToRole="Vehicle" />
+          <NavigationProperty Name="RideStop" Relationship="Self.FK_RideStop_Ride" FromRole="Ride" ToRole="RideStop" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_Ride" FromRole="Ride" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="RideStop">
+          <Key>
+            <PropertyRef Name="RideStop_Id" />
+          </Key>
+          <Property Name="RideStop_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ride_Id" Type="Int32" Nullable="false" />
+          <Property Name="RouteStop_Id" Type="Int32" Nullable="false" />
+          <Property Name="DateTime_Departure" Type="DateTime" Precision="3" />
+          <Property Name="DateTime_Arrival" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ride" Relationship="Self.FK_RideStop_Ride" FromRole="RideStop" ToRole="Ride" />
+          <NavigationProperty Name="RouteStop" Relationship="Self.FK_RideStop_RouteStop" FromRole="RideStop" ToRole="RouteStop" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="Route_Id" />
+          </Key>
+          <Property Name="Route_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ride" Relationship="Self.FK_Ride_Route" FromRole="Route" ToRole="Ride" />
+          <NavigationProperty Name="RouteStop" Relationship="Self.FK_RouteStop_Route" FromRole="Route" ToRole="RouteStop" />
+        </EntityType>
+        <EntityType Name="RouteStop">
+          <Key>
+            <PropertyRef Name="RouteStop_Id" />
+          </Key>
+          <Property Name="RouteStop_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Route_Id" Type="Int32" Nullable="false" />
+          <Property Name="Stop_Id" Type="Int32" Nullable="false" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RideStop" Relationship="Self.FK_RideStop_RouteStop" FromRole="RouteStop" ToRole="RideStop" />
+          <NavigationProperty Name="Route" Relationship="Self.FK_RouteStop_Route" FromRole="RouteStop" ToRole="Route" />
+          <NavigationProperty Name="Stop" Relationship="Self.FK_RouteStop_Stop" FromRole="RouteStop" ToRole="Stop" />
+        </EntityType>
+        <EntityType Name="Stop">
+          <Key>
+            <PropertyRef Name="Stop_Id" />
+          </Key>
+          <Property Name="Stop_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Stop_City" FromRole="Stop" ToRole="City" />
+          <NavigationProperty Name="RouteStop" Relationship="Self.FK_RouteStop_Stop" FromRole="Stop" ToRole="RouteStop" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Ticket_Id" />
+          </Key>
+          <Property Name="Ticket_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Person_Id" Type="Int32" Nullable="false" />
+          <Property Name="Ride_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Ticket_Person" FromRole="Ticket" ToRole="Person" />
+          <NavigationProperty Name="Ride" Relationship="Self.FK_Ticket_Ride" FromRole="Ticket" ToRole="Ride" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAdmin" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Person_User" FromRole="User" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Vehicle_Id" />
+          </Key>
+          <Property Name="Vehicle_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
+          <Property Name="PlateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ride" Relationship="Self.FK_Ride_Vehicle" FromRole="Vehicle" ToRole="Ride" />
+        </EntityType>
+        <Association Name="FK_City_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Region_Id" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stop_City">
+          <End Role="City" Type="Self.City" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stop" Type="Self.Stop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_Id" />
+            </Principal>
+            <Dependent Role="Stop">
+              <PropertyRef Name="City_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Person_Id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ride_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Route_Id" />
+            </Principal>
+            <Dependent Role="Ride">
+              <PropertyRef Name="Route_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ride_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Vehicle_Id" />
+            </Principal>
+            <Dependent Role="Ride">
+              <PropertyRef Name="Vehicle_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RideStop_Ride">
+          <End Role="Ride" Type="Self.Ride" Multiplicity="1" />
+          <End Role="RideStop" Type="Self.RideStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="Ride_Id" />
+            </Principal>
+            <Dependent Role="RideStop">
+              <PropertyRef Name="Ride_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Ride">
+          <End Role="Ride" Type="Self.Ride" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="Ride_Id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Ride_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RideStop_RouteStop">
+          <End Role="RouteStop" Type="Self.RouteStop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RideStop" Type="Self.RideStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RouteStop">
+              <PropertyRef Name="RouteStop_Id" />
+            </Principal>
+            <Dependent Role="RideStop">
+              <PropertyRef Name="RouteStop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RouteStop_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RouteStop" Type="Self.RouteStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Route_Id" />
+            </Principal>
+            <Dependent Role="RouteStop">
+              <PropertyRef Name="Route_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RouteStop_Stop">
+          <End Role="Stop" Type="Self.Stop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RouteStop" Type="Self.RouteStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stop">
+              <PropertyRef Name="Stop_Id" />
+            </Principal>
+            <Dependent Role="RouteStop">
+              <PropertyRef Name="Stop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PTLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Person" EntityType="Self.Person" />
+          <EntitySet Name="Region" EntityType="Self.Region" />
+          <EntitySet Name="Ride" EntityType="Self.Ride" />
+          <EntitySet Name="RideStop" EntityType="Self.RideStop" />
+          <EntitySet Name="Route" EntityType="Self.Route" />
+          <EntitySet Name="RouteStop" EntityType="Self.RouteStop" />
+          <EntitySet Name="Stop" EntityType="Self.Stop" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" />
+          <AssociationSet Name="FK_City_Region" Association="Self.FK_City_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stop_City" Association="Self.FK_Stop_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Stop" EntitySet="Stop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Country" Association="Self.FK_Person_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Country" Association="Self.FK_Region_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_User" Association="Self.FK_Person_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Person" Association="Self.FK_Ticket_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ride_Route" Association="Self.FK_Ride_Route">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="Ride" EntitySet="Ride" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ride_Vehicle" Association="Self.FK_Ride_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Ride" EntitySet="Ride" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RideStop_Ride" Association="Self.FK_RideStop_Ride">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="RideStop" EntitySet="RideStop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Ride" Association="Self.FK_Ticket_Ride">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RideStop_RouteStop" Association="Self.FK_RideStop_RouteStop">
+            <End Role="RouteStop" EntitySet="RouteStop" />
+            <End Role="RideStop" EntitySet="RideStop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RouteStop_Route" Association="Self.FK_RouteStop_Route">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="RouteStop" EntitySet="RouteStop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RouteStop_Stop" Association="Self.FK_RouteStop_Stop">
+            <End Role="Stop" EntitySet="Stop" />
+            <End Role="RouteStop" EntitySet="RouteStop" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PTLModelContainer" CdmEntityContainer="PTLEntities">
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="PTLModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="PTLModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="PTLModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Region">
+            <EntityTypeMapping TypeName="PTLModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ride">
+            <EntityTypeMapping TypeName="PTLModel.Ride">
+              <MappingFragment StoreEntitySet="Ride">
+                <ScalarProperty Name="Ride_Id" ColumnName="Ride_Id" />
+                <ScalarProperty Name="Route_Id" ColumnName="Route_Id" />
+                <ScalarProperty Name="Vehicle_Id" ColumnName="Vehicle_Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RideStop">
+            <EntityTypeMapping TypeName="PTLModel.RideStop">
+              <MappingFragment StoreEntitySet="RideStop">
+                <ScalarProperty Name="RideStop_Id" ColumnName="RideStop_Id" />
+                <ScalarProperty Name="Ride_Id" ColumnName="Ride_Id" />
+                <ScalarProperty Name="RouteStop_Id" ColumnName="RouteStop_Id" />
+                <ScalarProperty Name="DateTime_Departure" ColumnName="DateTime_Departure" />
+                <ScalarProperty Name="DateTime_Arrival" ColumnName="DateTime_Arrival" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Route">
+            <EntityTypeMapping TypeName="PTLModel.Route">
+              <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="Route_Id" ColumnName="Route_Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RouteStop">
+            <EntityTypeMapping TypeName="PTLModel.RouteStop">
+              <MappingFragment StoreEntitySet="RouteStop">
+                <ScalarProperty Name="RouteStop_Id" ColumnName="RouteStop_Id" />
+                <ScalarProperty Name="Route_Id" ColumnName="Route_Id" />
+                <ScalarProperty Name="Stop_Id" ColumnName="Stop_Id" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stop">
+            <EntityTypeMapping TypeName="PTLModel.Stop">
+              <MappingFragment StoreEntitySet="Stop">
+                <ScalarProperty Name="Stop_Id" ColumnName="Stop_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PTLModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket">
+            <EntityTypeMapping TypeName="PTLModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
+                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
+                <ScalarProperty Name="Ride_Id" ColumnName="Ride_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="PTLModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle">
+            <EntityTypeMapping TypeName="PTLModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="Vehicle_Id" ColumnName="Vehicle_Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="PlateNumber" ColumnName="PlateNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

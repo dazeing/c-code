@@ -1,0 +1,55 @@
+﻿<Window x:Class="PTLNew.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PTLNew"
+        mc:Ignorable="d"
+        Title="PTL - Авторизация" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="ItemsControl.Background" Value="White" />
+            <Setter Property="ItemsControl.Padding" Value="35,5"/>
+            <Setter Property="ItemsControl.BorderThickness" Value="1, 1, 1, 1"/>
+            <Setter Property="ItemsControl.BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="ItemsControl.BorderBrush" Value="Black"/>
+            <Setter Property="ItemsControl.BorderThickness" Value="2,2,2,2"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="ItemsControl.FontFamily" Value="Verdana"/>
+            <Setter Property="ItemsControl.FontSize" Value="14px"/>
+        </Style>
+    </Window.Resources>
+    <Grid ShowGridLines="False">
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="17" Width="61"><Hyperlink x:Name="ManualLink" Click="ManualLink_Click">
+                Справка
+            </Hyperlink></TextBlock>
+        <Image Source="Resources/Images/logo_main.png" Margin="0 10 0 0" Grid.ColumnSpan="3" />
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="236,33,227,27" VerticalAlignment="Center" HorizontalAlignment="Center" Height="80" Width="329">
+            <StackPanel Orientation="Horizontal" Margin="0 10">
+                <Label MinWidth="70" FontSize="14">Логин:</Label>
+                <TextBox MinWidth="250" Name="Username"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="70">Пароль:</Label>
+                <PasswordBox MinWidth="250" PasswordChar="*" Name="Password"></PasswordBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0" Height="29" Width="296">
+            <TextBlock Margin="0 0 20 0"><Hyperlink Click="Hyperlink_Click">
+                Зарегистрироваться
+            </Hyperlink></TextBlock>
+            <Button Click="Button_Click">Войти</Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,89 @@
+﻿<Window x:Class="PTLNew.EditUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PTLNew"
+        mc:Ignorable="d"
+        Title="EditUser" Height="600" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="ItemsControl.Background" Value="White" />
+            <Setter Property="ItemsControl.Padding" Value="35,5"/>
+            <Setter Property="ItemsControl.BorderThickness" Value="1, 1, 1, 1"/>
+            <Setter Property="ItemsControl.BorderBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="ItemsControl.BorderBrush" Value="Black"/>
+            <Setter Property="ItemsControl.BorderThickness" Value="2,2,2,2"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="ItemsControl.FontFamily" Value="Verdana"/>
+            <Setter Property="ItemsControl.FontSize" Value="14px"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Source="Resources/Images/logo_main.png" HorizontalAlignment="Left" Margin="0 10"/>
+        <TextBlock x:Name="WindowTitle" Grid.Row="0" VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Редактирование пользователя"
+                   FontWeight="Bold" FontSize="16" Margin="0"></TextBlock>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="0">
+                <Label Content="Логин:"></Label>
+                <TextBox IsReadOnly="True" x:Name="UsernameBox" MinWidth="200" ></TextBox>
+            </StackPanel>
+            <StackPanel x:Name="PasswordPanel" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0">
+                <Label Content="Пароль:"></Label>
+                <PasswordBox x:Name="PasswordBox" PasswordChar="*" MinWidth="200" MaxWidth="200" IsEnabled="False"></PasswordBox>
+            </StackPanel>
+            <Button Content="Изменить пароль" Visibility="Hidden" x:Name="ChangePassBnt" Margin="0,0,50,0" Click="ChangePassBnt_Click"/>
+        </StackPanel>
+        <DataGrid SelectionMode="Single" x:Name="DataGrid" Grid.Row="2" 
+                  HorizontalScrollBarVisibility="Disabled"
+                  CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Width="130" Binding="{Binding Surname}"/>
+                <DataGridTextColumn Width="130" Header="Имя" Binding="{Binding Name}"/>
+                <DataGridTextColumn Width="130" Header="Отчество" Binding="{Binding Patronymic}"/>
+                <DataGridTextColumn Width="130" Header="Гражданство" Binding="{Binding Country}"/>
+                <DataGridTextColumn Width="130" Header="Моб.Телефон" Binding="{Binding Phone}"/>
+                <DataGridTextColumn Width="130" Header="Паспорт" Binding="{Binding PassportNumber}"/>
+                <DataGridTextColumn Header="primary" 
+                                    Binding="{Binding IsPrimary}" 
+                                    Visibility="Hidden"/>
+            </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsPrimary}" Value="1">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+        <StackPanel Grid.Row="3" Margin="0,15,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
+                <Button x:Name="BackBtn" HorizontalAlignment="Left" Content="Назад" VerticalAlignment="Center" Click="BackBtn_Click"/>
+                <Button x:Name="EditPersonBtn" HorizontalAlignment="Center" Content="Редактировать персону" Margin="50,0" Width="243" Click="EditPersonBtn_Click"/>
+                <Button x:Name="AddPersonBtn" HorizontalAlignment="Right" Content="Добавить персону" VerticalAlignment="Center" Click="AddPersonBtn_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="SelectMainBtn" HorizontalAlignment="Left" Content="Сделать основной" Width="243" Margin="0,0,90,0" Click="SelectMainBtn_Click"/>
+                <Button x:Name="ExportBtn" VerticalAlignment="Top" Content="Экспорт таблицы" Margin="20,0,0,0" Click="ExportBtn_Click"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>
